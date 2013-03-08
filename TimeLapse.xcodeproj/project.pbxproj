@@ -8,6 +8,8 @@
 
 /* Begin PBXFileReference section */
 		2C61604C16E9FC8C00A23C81 /* script.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = script.sh; sourceTree = "<group>"; };
+		74B807C716EAAF6900FADA72 /* Conectar.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = Conectar.sh; sourceTree = "<group>"; };
+		74B807C816EAAF6900FADA72 /* Timelaps.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = Timelaps.sh; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXGroup section */
@@ -15,6 +17,8 @@
 			isa = PBXGroup;
 			children = (
 				2C61604C16E9FC8C00A23C81 /* script.sh */,
+				74B807C716EAAF6900FADA72 /* Conectar.sh */,
+				74B807C816EAAF6900FADA72 /* Timelaps.sh */,
 			);
 			sourceTree = "<group>";
 		};
