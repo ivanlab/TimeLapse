@@ -13,6 +13,9 @@
 # 	- En funcion de las interfaces hay preferencias (eth0, wlan0, wwan0)
 # 	- Cada 5 mins comprueba que tiene  acceso a internet
 
+# Necesita para funcionar la aplicación Sakis3g, que se puede descarga de:
+# http://www.sakis3g.org
+
 
 ################
 # PARAMETROS #
@@ -76,6 +79,7 @@ function REINICIAR_WLAN() {
 }
 
 # Función REINICIAR_WWAN
+# Reinicia la interfaz 3G
 #
 
 # REINICIAR_WWAN() {
