@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Silencia la salida por pantalla (NO FUNCIONA!!!)
-#set +v
+set +v
 
 ##########
 # DOCS. #
@@ -20,8 +20,9 @@
 ###############
 
 # Función LOG
-LOG_PATH=/home/pi/TimeLapse/Logs            # (Verificar que tiene permisos!!) .NO AÑADIR BARRA FINAL!!!
+LOG_PATH=/mnt/tera/Logs            # (Verificar que tiene permisos!!) .NO AÑADIR BARRA FINAL!!!
 LOG_FILE=TimeLapse_`date "+%Y%m%d"`.log     # Fichero Logs (Verificar que tiene permisos!!)
+LOG_FILE=$LOG_PATH/$LOG_FILE
 
 # Función SEND_MAIL
 EMAIL=personajeje@gmail.com
@@ -31,8 +32,9 @@ MESSAGE_TXT_FILE=`date "+%Y%m%d"_"%H%M%S"`_MAIL
 USB_RESET_COMMAND=/home/pi/TimeLapse/usbreset
 
 # Función CAPTURAR_FOTO
-IMAGES_TEMP_FOLDER=./Fotos      # Path para guardar imágenes temporalmente (Verificar que tiene permisos!!) .NO AÑADIR BARRA FINAL!!!
-IMAGE_FILENAME=`date "+%Y%m%d"_"%H%M%S"`_IMAGEN.JPG
+IMAGES_FOLDER=/mnt/tera/Fotos      # Path para guardar imágenes temporalmente (Verificar que tiene permisos!!) .NO AÑADIR BARRA FINAL!!!
+IMAGE_FILENAME=`date "+%Y%m%d"_"%H%M%S"`.JPG
+IMAGE_FILENAME=$IMAGES_FOLDER/$IMAGE_FILENAME
 
 ##############
 # FUNCIONES #
@@ -57,12 +59,12 @@ function crear_carpeta()
 
 function log() 
 {
- if [[ ! -fw $LOG_FILE ]]
+ if [[ ! -f $LOG_FILE ]]
  then
-    echo `date "+%Y%m%d"_"%H%M%S"` - $1 >>  $LOG_FILE
- else
     crear_carpeta $LOG_PATH
     touch $LOG_FILE
+    echo `date "+%Y%m%d"_"%H%M%S"` - $1 >>  $LOG_FILE
+ else
     echo `date "+%Y%m%d"_"%H%M%S"` - $1 >>  $LOG_FILE
  fi
 }
@@ -109,6 +111,7 @@ function usb_camera_reset()
  if [ -z ${dev} ]
  then
     log "USB_CAMERA_RESET >>> Error: Camera not found"
+    exit 1
  else
     $USB_RESET_COMMAND /dev/bus/usb/${dev}
     log "USB_CAMERA_RESET >>> Reseteado /dev/bus/usb/${dev}"
@@ -117,34 +120,27 @@ function usb_camera_reset()
 
 # Función CAPTURAR_FOTO
 # Captura una foto y la almacena en disco
-# Sintaxis: capturar_foto IMAGES_TEMP_FOLDER IMAGE_FILENAME
+# Sintaxis: capturar_foto IMAGES_FOLDER IMAGE_FILENAME
 
 function capturar_foto()
 {
- IMAGES_TEMP_FOLDER=$1
+ IMAGES_FOLDER=$1
  IMAGE_FILENAME=$2
- IMAGE_FILENAME=$IMAGES_TEMP_FOLDER/$IMAGE_FILENAME
 
- crear_carpeta $IMAGES_TEMP_FOLDER
- # Se toma la foto
- gphoto2 --capture-image-and-download --filename=$IMAGE_FILENAME
- # Se chequea si el comando ha generado algún error
- if [ "$?"-ne 0];
+ crear_carpeta $IMAGES_FOLDER
+ # Primero se resetea el USB para evitar problemas con la cámara
+ 
+ if ! usb_camera_reset; then log "CAPTURAR_FOTO >>> Fallo al resetear el USB"; exit 1; fi
+
+ # Se toma la foto y se chequea si correcto
+ if ! gphoto2 --capture-image-and-download --filename=$IMAGE_FILENAME
  then
-    # Caso de error, se resetea el USB una vez a ver si se arregla y se reintenta
-    # Esto se hace pensando en que la primera vez que se ejecutara el script (previo a cualquier reset), la cámara ya estuviera colgada por algún motivo.
-    usb_camera_reset
-    gphoto2 --capture-image-and-download --filename=$IMAGE_FILENAME 2>$MESSAGE_TXT_FILE # ESTO ES TEMPORAL. DEBE VOLCAR LA SALIDA A FICHERO DE LOGS
-    if [ "$?"-ne 0];
-    then
-        send_mail "$EMAIL" "Fallo al capturar imagen: $IMAGE_FILENAME" "$MESSAGE_TXT_FILE"
-        
+    log "CAPTURAR_FOTO >>> Fallo al capturar imagen: $IMAGE_FILENAME"
+    send_mail "$EMAIL" "Fallo al capturar imagen: $IMAGE_FILENAME" "$MESSAGE_TXT_FILE"
+    exit 1
  else
-    echo "command failed"; exit 1; fi
-
- log "CAPTURAR_FOTO >>> Foto: $IMAGE_FILENAME"
- # Se resetea el USB para evitar cuelge de la cámara
- usb_camera_reset
+    log "CAPTURAR_FOTO >>> Foto: $IMAGE_FILENAME"
+ fi
 }
 
 
@@ -153,25 +149,8 @@ function capturar_foto()
 # CUERPO #
 ##########
 
-capturar_foto $IMAGES_TEMP_FOLDER $IMAGE_FILENAME
+capturar_foto $IMAGES_FOLDER $IMAGE_FILENAME
 exit 0
-
-
-
-#touch $MAIL_TEMP_TEXT
-#comprobar_depencia gphoto2
-#capturar_foto >> $MAIL_TEMP_TEXT
-#send_mail  "$DST_MAIL" "`date "+%Y%m%d"_"%H%M%S"`_ASUNTO" $MAIL_TEMP_TEXT
-#exit 0
-
-#/*comprobar_dependencias
-#capturar_foto
-
-#si (subir_foto_ftp) sin error
-#	- log "foto tomada"
-#	otro caso
-#		- log "error al tomar foto"
-
 
 # El programa tiene dos partes
 # - Configurar entorno
