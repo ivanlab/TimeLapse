@@ -32,9 +32,8 @@ MESSAGE_TXT_FILE=`date "+%Y%m%d"_"%H%M%S"`_MAIL
 USB_RESET_COMMAND=/home/pi/TimeLapse/usbreset
 
 # Función CAPTURAR_FOTO
-IMAGES_FOLDER=/mnt/tera/Fotos      # Path para guardar imágenes temporalmente (Verificar que tiene permisos!!) .NO AÑADIR BARRA FINAL!!!
-IMAGE_FILENAME=`date "+%Y%m%d"_"%H%M%S"`.JPG
-IMAGE_FILENAME=$IMAGES_FOLDER/$IMAGE_FILENAME
+IMAGES_FOLDER=/mnt/tera/Fotos      # Path para guardar imágenes (Verificar que tiene permisos!!).NO AÑADIR BARRA FINAL!!!
+IMAGE_FILENAME=`date "+%Y%m%d"_"%H%M%S"`
 
 ##############
 # FUNCIONES #
@@ -107,7 +106,7 @@ function send_mail ()
 
 function usb_camera_reset()
 {
- dev=`gphoto2 --auto-detect | grep usb | cut -b 36-42 | sed 's/,/\//'`
+ dev=`/usr/local/bin/gphoto2 --auto-detect | grep usb | cut -b 36-42 | sed 's/,/\//'`
  if [ -z ${dev} ]
  then
     log "USB_CAMERA_RESET >>> Error: Camera not found"
@@ -133,12 +132,23 @@ function capturar_foto()
  if ! usb_camera_reset; then log "CAPTURAR_FOTO >>> Fallo al resetear el USB"; exit 1; fi
 
  # Se toma la foto y se chequea si correcto
- if ! gphoto2 --capture-image-and-download --filename=$IMAGE_FILENAME
+ #La foto se toma con nombre "capt0000..." en el directorio temporal (por la negativa del gphoto a grabarla sobre el disco directamente). Y el problema de definier el nombre cuando RAW+JPG
+ cd /tmp
+ # Antes de tomar la foto, se chequea si los fichero ya existieran, para evitar que de error la captura. Si ya existen, se borran.
+ if [ -e capt0000.jpg -o -e capt0000.cr2 ]; then
+    rm -f capt000*
+ fi
+
+# Se toma la foto y se chequea si correcto
+ if ! /usr/local/bin/gphoto2 --capture-image-and-download
  then
     log "CAPTURAR_FOTO >>> Fallo al capturar imagen: $IMAGE_FILENAME"
     send_mail "$EMAIL" "Fallo al capturar imagen: $IMAGE_FILENAME" "$MESSAGE_TXT_FILE"
     exit 1
  else
+    IMAGE_FILENAME=$IMAGES_FOLDER/$IMAGE_FILENAME
+    mv capt0000.jpg $IMAGE_FILENAME.jpg
+    mv capt0000.cr2 $IMAGE_FILENAME.cr2
     log "CAPTURAR_FOTO >>> Foto: $IMAGE_FILENAME"
  fi
 }
