@@ -8,8 +8,8 @@
 # Parametros rsync
 NASUSER=ivan
 NASHOST=nas.ivanlab.org
-NASPATH=/media/NAS/00_Raspbian_Sync/
-LPATH=/mnt/tera/Fotos
+NASPATH=/media/NAS/00_Raspbian_Sync/Fotos
+LPATH=/mnt/tera/Fotos/jpg
 
 # CUERPO
 
