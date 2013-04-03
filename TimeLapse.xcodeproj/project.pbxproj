@@ -8,6 +8,7 @@
 
 /* Begin PBXFileReference section */
 		2C1DC53516FE8EBE008425AD /* synchro.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = synchro.sh; sourceTree = "<group>"; };
+		2CD50106170CE6C800782AE0 /* usbreset.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = usbreset.c; sourceTree = "<group>"; };
 		74262BC716F144F2008DE901 /* gphoto2-updater.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = "gphoto2-updater.sh"; sourceTree = "<group>"; };
 		74B807C716EAAF6900FADA72 /* Conectar.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = Conectar.sh; sourceTree = "<group>"; };
 		74B807C816EAAF6900FADA72 /* Timelapse.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = Timelapse.sh; sourceTree = "<group>"; };
@@ -20,6 +21,7 @@
 				2C1DC53516FE8EBE008425AD /* synchro.sh */,
 				74B807C716EAAF6900FADA72 /* Conectar.sh */,
 				74B807C816EAAF6900FADA72 /* Timelapse.sh */,
+				2CD50106170CE6C800782AE0 /* usbreset.c */,
 				74262BC716F144F2008DE901 /* gphoto2-updater.sh */,
 			);
 			sourceTree = "<group>";

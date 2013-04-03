@@ -16,6 +16,8 @@
 # Necesita para funcionar la aplicación Sakis3g, que se puede descarga de:
 # http://www.sakis3g.org
 
+#USBRESET:
+#http://toothbrushsymphony.blogspot.com.es/2013/01/usb-reset-on-raspberry-pi.html
 
 ################
 # PARAMETROS #
