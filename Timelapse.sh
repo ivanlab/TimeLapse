@@ -20,7 +20,7 @@ set +v
 ###############
 
 # Función LOG
-LOG_PATH=/mnt/tera/Logs            # (Verificar que tiene permisos!!) .NO AÑADIR BARRA FINAL!!!
+LOG_PATH=/media/tera/Logs            # (Verificar que tiene permisos!!) .NO AÑADIR BARRA FINAL!!!
 LOG_FILE=TimeLapse_`date "+%Y%m%d"`.log     # Fichero Logs (Verificar que tiene permisos!!)
 LOG_FILE=$LOG_PATH/$LOG_FILE
 
@@ -32,7 +32,7 @@ MESSAGE_TXT_FILE=`date "+%Y%m%d"_"%H%M%S"`_MAIL
 USB_RESET_COMMAND=/home/pi/TimeLapse/usbreset
 
 # Función CAPTURAR_FOTO
-IMAGES_FOLDER=/mnt/tera/Fotos      # Path para guardar imágenes (Verificar que tiene permisos!!).NO AÑADIR BARRA FINAL!!!
+IMAGES_FOLDER=/media/tera/Fotos      # Path para guardar imágenes (Verificar que tiene permisos!!).NO AÑADIR BARRA FINAL!!!
 IMAGE_FILENAME=`date "+%Y%m%d"_"%H%M%S"`
 
 ##############

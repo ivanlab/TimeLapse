@@ -9,7 +9,7 @@
 NASUSER=ivan
 NASHOST=nas.ivanlab.org
 NASPATH=/media/NAS/00_Raspbian_Sync/Fotos
-LPATH=/mnt/tera/Fotos/jpg
+LPATH=/media/tera/Fotos/jpg
 
 # CUERPO
 
