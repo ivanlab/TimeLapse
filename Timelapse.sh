@@ -168,7 +168,8 @@ exit 0
 
 # El programa tiene dos partes
 # - Configurar entorno
-# - Disparar foto, según configuración
+# - Disparar foto, según configuracion
+
 
 
 
