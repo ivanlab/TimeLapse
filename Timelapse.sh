@@ -89,11 +89,19 @@ function send_mail ()
 {
  EMAIL=$1
  SUBJECT=$2
+<<<<<<< HEAD
  LOG_FILE=$3
 
  if [[ ! -f "$LOG_FILE" ]]
  then
     mail -s $SUBJECT $EMAIL < "$LOG_FILE"
+=======
+ MESSAGE_TXT_FILE=$3
+
+ if [[ ! -f $MESSAGE_TXT_FILE ]]
+ then
+    mail -s $SUBJECT $EMAIL < $MESSAGE_TXT_FILE
+>>>>>>> 16aa42a2c04db8552b6e5bb2b35d60e7171b9386
     log "Correo enviado a $EMAIL con asunto $SUBJECT"
  else
     log "SEND_MAIL >>> Error al intentar enviar un correo con asunto $SUBJECT"
@@ -110,7 +118,10 @@ function usb_camera_reset()
  if [ -z ${dev} ]
  then
     log "USB_CAMERA_RESET >>> Error: Camera not found"
+<<<<<<< HEAD
     send_mail "$EMAIL" "Fallo al resetear la camara: $IMAGE_FILENAME" "$LOG_FILE" #"$MESSAGE_TXT_FILE"
+=======
+>>>>>>> 16aa42a2c04db8552b6e5bb2b35d60e7171b9386
     exit 1
  else
     $USB_RESET_COMMAND /dev/bus/usb/${dev}
@@ -127,8 +138,12 @@ function capturar_foto()
  IMAGES_FOLDER=$1
  IMAGE_FILENAME=$2
 
+<<<<<<< HEAD
  crear_carpeta "$IMAGES_FOLDER"_JPG
  crear_carpeta "$IMAGES_FOLDER"_RAW
+=======
+ crear_carpeta $IMAGES_FOLDER
+>>>>>>> 16aa42a2c04db8552b6e5bb2b35d60e7171b9386
  # Primero se resetea el USB para evitar problemas con la cámara
  
  if ! usb_camera_reset; then log "CAPTURAR_FOTO >>> Fallo al resetear el USB"; exit 1; fi
@@ -148,12 +163,19 @@ function capturar_foto()
     send_mail "$EMAIL" "Fallo al capturar imagen: $IMAGE_FILENAME" "$MESSAGE_TXT_FILE"
     exit 1
  else
+<<<<<<< HEAD
     IMAGE_FILENAME_JPG="$IMAGES_FOLDER"_JPG/$IMAGE_FILENAME
     mv capt0000.jpg $IMAGE_FILENAME_JPG.jpg
     log "CAPTURAR_FOTO >>> Foto: $IMAGE_FILENAME_JPG"
     IMAGE_FILENAME_RAW="$IMAGES_FOLDER"_RAW/$IMAGE_FILENAME   
     mv capt0000.cr2 $IMAGE_FILENAME_RAW.cr2
     log "CAPTURAR_FOTO >>> Foto: $IMAGE_FILENAME_RAW"
+=======
+    IMAGE_FILENAME=$IMAGES_FOLDER/$IMAGE_FILENAME
+    mv capt0000.jpg $IMAGE_FILENAME.jpg
+    mv capt0000.cr2 $IMAGE_FILENAME.cr2
+    log "CAPTURAR_FOTO >>> Foto: $IMAGE_FILENAME"
+>>>>>>> 16aa42a2c04db8552b6e5bb2b35d60e7171b9386
  fi
 }
 

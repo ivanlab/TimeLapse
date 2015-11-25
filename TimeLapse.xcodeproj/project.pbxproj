@@ -1,0 +1,82 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXFileReference section */
+		2C1DC53516FE8EBE008425AD /* synchro.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = synchro.sh; sourceTree = "<group>"; };
+		2CD50106170CE6C800782AE0 /* usbreset.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = usbreset.c; sourceTree = "<group>"; };
+		2CD50107170CE90500782AE0 /* WifiBootstrap.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = WifiBootstrap.sh; sourceTree = "<group>"; };
+		74262BC716F144F2008DE901 /* gphoto2-updater.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = "gphoto2-updater.sh"; sourceTree = "<group>"; };
+		74B807C716EAAF6900FADA72 /* Conectar.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = Conectar.sh; sourceTree = "<group>"; };
+		74B807C816EAAF6900FADA72 /* Timelapse.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = Timelapse.sh; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXGroup section */
+		2C61604416E9FBAF00A23C81 = {
+			isa = PBXGroup;
+			children = (
+				2C1DC53516FE8EBE008425AD /* synchro.sh */,
+				74B807C716EAAF6900FADA72 /* Conectar.sh */,
+				74B807C816EAAF6900FADA72 /* Timelapse.sh */,
+				2CD50106170CE6C800782AE0 /* usbreset.c */,
+				2CD50107170CE90500782AE0 /* WifiBootstrap.sh */,
+				74262BC716F144F2008DE901 /* gphoto2-updater.sh */,
+			);
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXProject section */
+		2C61604516E9FBAF00A23C81 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0460;
+			};
+			buildConfigurationList = 2C61604816E9FBAF00A23C81 /* Build configuration list for PBXProject "TimeLapse" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = 2C61604416E9FBAF00A23C81;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+			);
+		};
+/* End PBXProject section */
+
+/* Begin XCBuildConfiguration section */
+		2C61604916E9FBAF00A23C81 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+			};
+			name = Debug;
+		};
+		2C61604A16E9FBAF00A23C81 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		2C61604816E9FBAF00A23C81 /* Build configuration list for PBXProject "TimeLapse" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				2C61604916E9FBAF00A23C81 /* Debug */,
+				2C61604A16E9FBAF00A23C81 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 2C61604516E9FBAF00A23C81 /* Project object */;
+}
