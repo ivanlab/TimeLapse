@@ -7,7 +7,6 @@
 #
 # Parametros rsync
 
-
 NASUSER=huri
 NASHOST=173.39.245.44
 NASPATH=/var/www/html/owncloud/data/timelapse/files/Photos/Timelapse
