@@ -9,7 +9,7 @@
 
 NASUSER=huri
 NASHOST=173.39.245.44
-NASPATH=/var/www/html/owncloud/data/timelapse/files/Photos/Timelapse/
+NASPATH=/var/www/html/owncloud/data/timelapse/files/Photos/Timelapse/Fotos_JPG/
 LPATH=/media/tera/Fotos_JPG/
 
 # CUERPO
