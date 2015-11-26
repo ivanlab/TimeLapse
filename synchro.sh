@@ -20,7 +20,7 @@ if ! ping -c 3 8.8.8.8
 	    if [ ! -f /tmp/rsync.lock ]
 			then
 			    touch /tmp/rsync.lock
-			    rsync -avz -e "ssh -p 6666 -i /home/pi/.ssh/id_rsa" LPATH $NASUSER@$NASHOST:$NASPATH
+			    rsync -avz -e "ssh -p 6666 -i /home/pi/.ssh/id_rsa" $LPATH $NASUSER@$NASHOST:$NASPATH
 			    echo ok
 			    rm /tmp/rsync.lock
 			else echo "rsync is locked by /tmp/rsync.lock"
