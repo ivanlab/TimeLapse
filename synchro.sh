@@ -20,20 +20,22 @@ LOG_FILE=$LOG_PATH/$LOG_FILE
 # Función LOG
 # Imprime mensajes en fichero de log
 # Sintaxis:	log "Texto que se quiere sacar por fichero logs"
-function log() 
-{
- if [[ ! -f $LOG_FILE ]]
- then
-    crear_carpeta $LOG_PATH
-    touch $LOG_FILE
-    echo `date "+%Y%m%d"_"%H%M%S"` - $1 >>  $LOG_FILE
- else
-    echo `date "+%Y%m%d"_"%H%M%S"` - $1 >>  $LOG_FILE
- fi
-}
+
+# function log() 
+# {
+#  if [[ ! -f $LOG_FILE ]]
+#  then
+#     crear_carpeta $LOG_PATH
+#     touch $LOG_FILE
+#     echo `date "+%Y%m%d"_"%H%M%S"` - $1 >>  $LOG_FILE
+#  else
+#     echo `date "+%Y%m%d"_"%H%M%S"` - $1 >>  $LOG_FILE
+#  fi
+# }
 # Función CREAR_CARPETA
 # Comprueba si existe la carpeta y, en caso negativo, la crea.
 # Sintaxis:	crear_carpeta FOLDER_PATH
+
 function crear_carpeta()
 {
  FOLDER_PATH=$1
@@ -42,6 +44,7 @@ function crear_carpeta()
     mkdir -p $FOLDER_PATH
  fi
 }
+
 # CUERPO
 if ! ping -c 3 8.8.8.8
 	then
@@ -50,13 +53,13 @@ if ! ping -c 3 8.8.8.8
 	    if [ ! -f /tmp/rsync.lock ]
 			then
 			    touch /tmp/rsync.lock
-			    log "Sin restriccion previa rsync.lock -> Iniciando syncronizacion"
+			    # log "Sin restriccion previa rsync.lock -> Iniciando syncronizacion"
 			    
 			    if ! rsync -avz -e "ssh -p 6666 -i /home/pi/.ssh/id_rsa" $LPATH $NASUSER@$NASHOST:$NASPATH
 			    	then 
-			    		log "error en sincronizacion"
+			    		# log "error en sincronizacion"
 			    	else
-			    		log "sincronizacion realizada con exito"
+			    		# log "sincronizacion realizada con exito"
 			    fi
 			    rm /tmp/rsync.lock
 			else echo "rsync is locked by /tmp/rsync.lock"
