@@ -129,6 +129,7 @@ function capturar_foto()
 
  crear_carpeta "$IMAGES_FOLDER"_JPG
  crear_carpeta "$IMAGES_FOLDER"_RAW
+ 
  # Primero se resetea el USB para evitar problemas con la cámara
  
  if ! usb_camera_reset; then log "CAPTURAR_FOTO >>> Fallo al resetear el USB"; exit 1; fi
@@ -142,6 +143,7 @@ function capturar_foto()
  fi
 
 # Se toma la foto y se chequea si correcto
+
  if ! /usr/local/bin/gphoto2 --capture-image-and-download
  then
     log "CAPTURAR_FOTO >>> Fallo al capturar imagen: $IMAGE_FILENAME"
