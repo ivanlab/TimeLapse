@@ -20,7 +20,6 @@ LOG_FILE=$LOG_PATH/$LOG_FILE
 # Función LOG
 # Imprime mensajes en fichero de log
 # Sintaxis:	log "Texto que se quiere sacar por fichero logs"
-
 function log() 
 {
  if [[ ! -f $LOG_FILE ]]
@@ -32,8 +31,6 @@ function log()
     echo `date "+%Y%m%d"_"%H%M%S"` - $1 >>  $LOG_FILE
  fi
 }
-
-
 # Función CREAR_CARPETA
 # Comprueba si existe la carpeta y, en caso negativo, la crea.
 # Sintaxis:	crear_carpeta FOLDER_PATH
@@ -45,8 +42,6 @@ function crear_carpeta()
     mkdir -p $FOLDER_PATH
  fi
 }
-
-
 # CUERPO
 if ! ping -c 3 8.8.8.8
 	then
@@ -63,7 +58,6 @@ if ! ping -c 3 8.8.8.8
 			    	else
 			    		log "sincronizacion realizada con exito"
 			    fi
-
 			    rm /tmp/rsync.lock
 			else echo "rsync is locked by /tmp/rsync.lock"
 		fi
