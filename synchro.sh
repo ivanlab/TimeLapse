@@ -55,7 +55,7 @@ if ! ping -c 3 8.8.8.8
 	    if [ ! -f /tmp/rsync.lock ]
 			then
 			    touch /tmp/rsync.lock
-			    log "Sin restriccion previa rsync.lock - Iniciando syncronizacion"
+			    log "Sin restriccion previa rsync.lock -> Iniciando syncronizacion"
 			    
 			    if ! rsync -avz -e "ssh -p 6666 -i /home/pi/.ssh/id_rsa" $LPATH $NASUSER@$NASHOST:$NASPATH
 			    	then 
