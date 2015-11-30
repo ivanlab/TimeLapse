@@ -58,8 +58,10 @@ if ! ping -c 3 8.8.8.8
 			    if ! rsync -avz -e "ssh -p 6666 -i /home/pi/.ssh/id_rsa" $LPATH $NASUSER@$NASHOST:$NASPATH
 			    	then 
 			    		# log "error en sincronizacion"
+			    		echo error
 			    	else
 			    		# log "sincronizacion realizada con exito"
+			    		echo success
 			    fi
 			    rm /tmp/rsync.lock
 			else echo "rsync is locked by /tmp/rsync.lock"
