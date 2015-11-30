@@ -36,14 +36,14 @@ LOG_FILE=$LOG_PATH/$LOG_FILE
 # Comprueba si existe la carpeta y, en caso negativo, la crea.
 # Sintaxis:	crear_carpeta FOLDER_PATH
 
-function crear_carpeta()
-{
- FOLDER_PATH=$1
- if [[ ! -d $FOLDER_PATH ]]
- then
-    mkdir -p $FOLDER_PATH
- fi
-}
+# function crear_carpeta()
+# {
+#  FOLDER_PATH=$1
+#  if [[ ! -d $FOLDER_PATH ]]
+#  then
+#     mkdir -p $FOLDER_PATH
+#  fi
+# }
 
 # CUERPO
 if ! ping -c 3 8.8.8.8
