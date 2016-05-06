@@ -29,7 +29,7 @@ EMAIL=personajeje@gmail.com
 MESSAGE_TXT_FILE=`date "+%Y%m%d"_"%H%M%S"`_MAIL
 
 # Función USB_CAMERA_RESET
-USB_RESET_COMMAND=/home/pi/TimeLapse/usbreset
+USB_RESET_COMMAND=/home/personaje/TimeLapse/usbreset
 
 # Función CAPTURAR_FOTO
 IMAGES_FOLDER=/media/tera/Fotos      # Path para guardar imágenes (Verificar que tiene permisos!!).NO AÑADIR BARRA FINAL!!!
@@ -106,7 +106,7 @@ function send_mail ()
 
 function usb_camera_reset()
 {
- dev=`/usr/local/bin/gphoto2 --auto-detect | grep usb | cut -b 36-42 | sed 's/,/\//'`
+ dev=`/usr/bin/gphoto2 --auto-detect | grep usb | cut -b 36-42 | sed 's/,/\//'`
  if [ -z ${dev} ]
  then
     log "USB_CAMERA_RESET >>> Error: Camera not found"
@@ -144,7 +144,7 @@ function capturar_foto()
 
 # Se toma la foto y se chequea si correcto
 
- if ! /usr/local/bin/gphoto2 --capture-image-and-download
+ if ! /usr/bin/gphoto2 --capture-image-and-download
  then
     log "CAPTURAR_FOTO >>> Fallo al capturar imagen: $IMAGE_FILENAME"
     send_mail "$EMAIL" "Fallo al capturar imagen: $IMAGE_FILENAME" "$MESSAGE_TXT_FILE"
